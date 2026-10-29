@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cate ❤️</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#08030d;color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 20%,#3b123c 0,#120518 35%,#08030d 70%);z-index:-3}
+#stars{position:fixed;inset:0;z-index:-2}.wrap{width:min(94%,760px);margin:auto;padding:30px 0 70px}
+.card{background:#ffffff0e;border:1px solid #ffffff20;border-radius:28px;padding:28px 22px;backdrop-filter:blur(15px);box-shadow:0 20px 70px #0008;margin:18px 0}
+.hero{text-align:center;padding:42px 22px}.pill{display:inline-block;border:1px solid #ffffff25;background:#ffffff0d;padding:8px 13px;border-radius:99px;font-size:12px;letter-spacing:1px}
+h1{font-size:clamp(48px,12vw,92px);margin:18px 0 8px;line-height:.9;background:linear-gradient(90deg,#fff,#ff9fca,#fff);-webkit-background-clip:text;color:transparent}
+h2{margin:5px 0 12px}.sub{color:#dfcedd;line-height:1.6}.center{text-align:center}
+.progress{height:7px;background:#ffffff12;border-radius:99px;overflow:hidden;margin:16px 0}.bar{height:100%;width:0;background:#ff5b9e;transition:.4s}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.tile{padding:18px;border:1px solid #ffffff18;border-radius:20px;background:#ffffff09;text-align:left;cursor:pointer;min-height:115px}.tile b{display:block;margin-bottom:7px}.tile span{font-size:13px;color:#cdbdce}
+button{border:0;border-radius:999px;padding:14px 20px;font-weight:800;cursor:pointer;font-size:15px;min-height:48px}.primary{background:#ff5b9e;color:#fff}.ghost{background:#ffffff12;color:#fff;border:1px solid #ffffff20}.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.quizQ{font-size:20px;line-height:1.45}.answers{display:grid;gap:10px;margin-top:15px}.answers button{text-align:left;background:#ffffff0d;color:#fff;border:1px solid #ffffff1d}.answers button.correct{background:#245d42}.answers button.wrong{background:#642c3f}
+#noBtn{position:relative;transition:left .18s,top .18s}.playbox{position:relative;height:110px;overflow:hidden;border-radius:18px;background:#ffffff08;margin-top:15px}.playbox button{position:absolute}
+.memory{display:none;padding:18px;margin-top:15px;border-left:3px solid #ff5b9e;background:#ffffff08;border-radius:12px;line-height:1.7}.memory.show{display:block}
+footer{text-align:center;color:#9f8da0;font-size:12px;padding:15px}
+.float{position:fixed;pointer-events:none;z-index:9;animation:rise 4s linear forwards}@keyframes rise{to{transform:translateY(-110vh) translateX(var(--x)) rotate(25deg);opacity:0}}
+.pop{animation:pop .45s}@keyframes pop{50%{transform:scale(1.05)}}
+@media(max-width:500px){.grid{grid-template-columns:1fr}.card{padding:23px 17px}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="wrap">
+<section class="card hero">
+<span class="pill">⚠️ IMPORTANT MESSAGE FOR CATE</span>
+<h1>Cate ❤️</h1>
+<p class="sub">I could have sent you a normal message… but where's the fun in that?</p>
+<p id="type" class="sub"></p>
+<div class="progress"><div id="bar" class="bar"></div></div>
+<small id="step">Let's see how far you get 😏</small>
+</section>
+
+<section class="card">
+<h2>🎮 The Cate Challenge</h2>
+<p class="sub">Before the big question, unlock three little surprises.</p>
+<div class="grid">
+<div class="tile" data-open="one"><b>💌 Secret message</b><span>Tap me. I might have something to say.</span></div>
+<div class="tile" data-open="two"><b>🧠 Tiny quiz</b><span>Let's see if you can survive this one.</span></div>
+<div class="tile" data-open="three"><b>🎁 Mystery box</b><span>Definitely not suspicious.</span></div>
+<div class="tile" data-open="four"><b>😂 One last thing</b><span>Okay… maybe two last things.</span></div>
+</div>
+<div id="one" class="memory">If you are reading this, just know that I genuinely enjoy having you around. You have become someone I care about more than I planned. ❤️</div>
+<div id="three" class="memory">🎁 You unlocked: <b>Unlimited compliments</b> for one whole day. Use them wisely. 😌</div>
+<div id="four" class="memory">😂 Plot twist: I spent time making a whole website instead of simply saying “I like you.” That's how serious the situation is.</div>
+</section>
+
+<section class="card">
+<h2>🧠 Mini Quiz</h2><p id="quiz" class="quizQ"></p><div id="answers" class="answers"></div>
+<p id="quizResult" class="sub"></p>
+</section>
+
+<section class="card center">
+<h2>🎯 The Almost-Serious Question</h2>
+<p class="sub">Okay Cate. No more distractions.</p>
+<p style="font-size:22px;line-height:1.5"><b>Would you be my girlfriend?</b><br>❤️ Or at least give me a chance to show you how much I care?</p>
+<div class="row" id="buttons">
+<button class="primary" id="yes">YES ❤️</button>
+<button class="ghost" id="noBtn">NO 🙈</button>
+</div>
+<p id="reaction" class="sub"></p>
+</section>
+
+<section class="card center">
+<h2>🌙 One final choice</h2>
+<p class="sub">Whatever your answer is, you can choose the honest one. No pressure.</p>
+<div class="row">
+<button class="primary" id="heart">💗 I care too</button>
+<button class="ghost" id="later">🥹 I need time</button>
+</div>
+</section>
+<footer>Made with questionable levels of courage, just for Cate. ❤️</footer>
+</div>
+
+<script>
+const root=document.body, bar=document.getElementById('bar'),step=document.getElementById('step');
+const text="Cate, I like you. I care about you. And I wanted to make this little surprise because sometimes a normal message just isn't enough...";
+let k=0;function type(){if(k<text.length){document.getElementById('type').textContent=text.slice(0,++k);bar.style.width=(k/text.length*100)+'%';setTimeout(type,28)}}type();
+
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>{const x=document.getElementById(t.dataset.open);x.classList.toggle('show');x.classList.add('pop');setTimeout(()=>x.classList.remove('pop'),500)});
+
+const qs=[
+["What's the most important thing in this website?","The person reading it ❤️",["The CSS","The person reading it ❤️","The footer"]],
+["What happens if you press YES?","A lot of hearts ❤️",["Nothing","A lot of hearts ❤️","The laptop explodes"]],
+["Should Cate feel pressured?","Absolutely not.",["Yes","Absolutely not.","Only on weekends"]]
+];let qi=0;
+function loadQ(){let q=qs[qi%qs.length];document.getElementById('quiz').textContent=q[0];let a=document.getElementById('answers');a.innerHTML='';q[2].forEach(v=>{let b=document.createElement('button');b.textContent=v;b.onclick=()=>{if(v===q[1]){b.classList.add('correct');document.getElementById('quizResult').textContent="Correct 😌 You get a point!";heartBurst(8)}else{b.classList.add('wrong');document.getElementById('quizResult').textContent="Nice try 😂 Try another one."}qi++;setTimeout(loadQ,700)};a.appendChild(b)})}loadQ();
+
+const no=document.getElementById('noBtn'), reaction=document.getElementById('reaction');
+function moveNo(){const box=document.getElementById('buttons').getBoundingClientRect();const w=innerWidth;const x=Math.max(5,Math.min(w-110,Math.random()*(w-120)));const y=Math.random()*90-45;no.style.position='fixed';no.style.left=x+'px';no.style.top=Math.max(10,Math.min(innerHeight-70,box.top+y))+'px';reaction.textContent="😂 Nice try! That button suddenly became shy.";setTimeout(()=>reaction.textContent='',1300)}
+['mouseenter','touchstart','focus'].forEach(e=>no.addEventListener(e,moveNo));
+no.addEventListener('click',moveNo);
+document.getElementById('yes').onclick=()=>{reaction.innerHTML="🥹❤️ <b>You chose YES!</b> Okay… now I'm smiling.";heartBurst(45);document.getElementById('yes').textContent="WE HAVE A YES! 💍❤️";no.style.display='none';};
+document.getElementById('heart').onclick=()=>{reaction.textContent="💗 That little button just made someone's day.";heartBurst(30)};
+document.getElementById('later').onclick=()=>{reaction.textContent="🥹 Take all the time you need. I care about you either way.";heartBurst(10)};
+
+function heartBurst(n){for(let i=0;i<n;i++){let e=document.createElement('div');e.className='float';e.textContent=['❤️','💗','💕','✨','💖'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.bottom='5vh';e.style.fontSize=15+Math.random()*25+'px';e.style.setProperty('--x',(Math.random()*220-110)+'px');root.appendChild(e);setTimeout(()=>e.remove(),4200)}}
+
+const c=document.getElementById('stars'),ctx=c.getContext('2d');let stars=[];
+function resize(){c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);stars=Array.from({length:100},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:.3+Math.random()*1.4,p:Math.random()*6.28}))}
+function draw(){ctx.clearRect(0,0,innerWidth,innerHeight);stars.forEach(s=>{s.p+=.015;ctx.globalAlpha=.25+.3*Math.sin(s.p);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.fill()});requestAnimationFrame(draw)}addEventListener('resize',resize);resize();draw();
+</script>
+</body></html>
